@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"strings"
 	"sync"
@@ -98,7 +99,7 @@ type check struct {
 	response *http.Response
 	duration float64
 	success  bool
-	reason   string
+	reason   []string
 }
 
 func (c *check) MarshalJSON() ([]byte, error) {
@@ -148,7 +149,7 @@ func (c *check) MarshalJSON() ([]byte, error) {
 		Response *Response `json:"response"`
 		Duration float64   `json:"duration"`
 		Success  bool      `json:"success"`
-		Reason   string    `json:"reason"`
+		Reason   []string  `json:"reason"`
 	}{
 		Name:     c.name(),
 		Service:  c.service,
@@ -196,8 +197,7 @@ func (c *check) responseHeaders(prefix string) string {
 func (c *check) run(wg *sync.WaitGroup) {
 	defer wg.Done()
 	var err error
-	success := false
-	reason := ""
+	c.reason = []string{}
 	duration := 0.0
 
 	client := &http.Client{
@@ -211,18 +211,30 @@ func (c *check) run(wg *sync.WaitGroup) {
 
 	c.response, err = client.Do(c.request)
 	if err != nil {
-		reason = fmt.Sprintf("Error requesting %s: %s", c.request.URL, err.Error())
-	} else {
-		duration = time.Since(start).Seconds()
-
-		if c.status == c.response.StatusCode {
-			success = true
-		} else {
-			reason = fmt.Sprintf("Expected %d, recieved %d", c.status, c.response.StatusCode)
-		}
+		c.reason = append(c.reason, fmt.Sprintf("Error requesting %s: %s", c.request.URL, err.Error()))
+		c.duration = duration
+		c.success = false
+		return
 	}
 
-	c.duration = duration
-	c.success = success
-	c.reason = reason
+	c.duration = time.Since(start).Seconds()
+
+	body, err := ioutil.ReadAll(c.response.Body)
+	if err != nil {
+		c.reason = append(c.reason, fmt.Sprintf("Error reading body of %s: %s", c.request.URL, err.Error()))
+		c.success = false
+		return
+	}
+
+	if c.status == c.response.StatusCode {
+		c.success = true
+	} else {
+		c.success = false
+		c.reason = append(c.reason, fmt.Sprintf("Expected %d, recieved %d", c.status, c.response.StatusCode))
+	}
+
+	if !strings.Contains(string(body), c.contains) {
+		c.success = false
+		c.reason = append(c.reason, fmt.Sprintf("content '%s' not in body", c.contains))
+	}
 }
