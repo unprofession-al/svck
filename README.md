@@ -62,3 +62,7 @@ Summary:
 	Failed: 1
 	Successful: 2
 ```
+
+## Credits
+
+`svck` is based on an idea and a python/nose-based implmentation by @danduk82
