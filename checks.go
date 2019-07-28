@@ -167,6 +167,10 @@ func (c *check) MarshalJSON() ([]byte, error) {
 	})
 }
 
+func (c *check) asCurl() string {
+	return fmt.Sprintf("curl -v %s '%s'", c.requestHeaders("-H "), c.request.URL.String())
+}
+
 func (c *check) name() string {
 	return fmt.Sprintf("%s@%s/%s/%s", c.service, c.address, c.test, c.resource)
 }

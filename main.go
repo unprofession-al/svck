@@ -64,7 +64,7 @@ var runCmd = &cobra.Command{
 					success++
 				} else {
 					fail++
-					fmt.Printf("Failed check: %s\n\tURL: %s\n\tREQUEST_HEADERS: %s\n\tRESPONSE_HEADERS: %s\n\tREASON: %s\n\n", check.name(), check.request.URL.String(), check.requestHeaders(""), check.responseHeaders(""), check.reason)
+					fmt.Printf("Failed check: %s\n\tURL: %s\n\tREQUEST_HEADERS: %s\n\tRESPONSE_HEADERS: %s\n\tREPRODUCE: %s\n\tREASON: %s\n\n", check.name(), check.request.URL.String(), check.requestHeaders(""), check.responseHeaders(""), check.asCurl(), check.reason)
 				}
 			}
 
@@ -96,7 +96,7 @@ var curlCmd = &cobra.Command{
 			if !cfg.NoBashComments {
 				fmt.Printf("\n# %s\n", check.name())
 			}
-			fmt.Printf("curl -v %s'%s'\n", check.requestHeaders("-H "), check.request.URL.String())
+			fmt.Sprintf("%s\n", check.asCurl())
 		}
 	},
 }
