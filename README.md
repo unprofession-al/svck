@@ -1,6 +1,6 @@
-# svck (pronounced 'service checker')
+![SVCK](./svck.svg "SVCK")
 
-Check your http/https services.
+`SVCK` (pronounced 'suck') or _SerVice cheCKer_ checks your http/https services.
 
 ## Install
 
