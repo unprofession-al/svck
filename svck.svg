@@ -15,7 +15,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.4 5da689c313, 2019-01-14"
-   sodipodi:docname="drawing.svg">
+   sodipodi:docname="svck.svg">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="7.9195959"
-     inkscape:cx="118.19364"
+     inkscape:cx="100.26343"
      inkscape:cy="41.395309"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -35,9 +35,9 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="3436"
+     inkscape:window-width="856"
      inkscape:window-height="1400"
-     inkscape:window-x="0"
+     inkscape:window-x="1591"
      inkscape:window-y="18"
      inkscape:window-maximized="0" />
   <metadata
@@ -48,7 +48,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -57,16 +57,26 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(-48.921968,-88.867557)">
-    <text
-       xml:space="preserve"
+    <g
+       aria-label="svck"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="47.625"
-       y="104.98809"
-       id="text12"><tspan
-         sodipodi:role="line"
-         id="tspan10"
-         x="47.625"
-         y="104.98809"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;font-family:'Cinzel Decorative';-inkscape-font-specification:'Cinzel Decorative';stroke-width:0.26458332">svck</tspan></text>
+       id="text12">
+      <path
+         d="m 51.4858,94.241068 c -0.722489,-0.677333 -0.903111,-1.490133 -0.903111,-2.099733 0,-1.354667 1.106311,-2.596445 2.777067,-2.596445 1.399822,0 2.528711,0.880534 2.528711,2.325512 h 0.225777 v -2.754489 h -0.903111 c -0.6096,-0.135467 -1.332089,-0.248356 -1.941689,-0.248356 -2.573866,0 -3.951111,1.919111 -3.951111,3.815645 0,0.880533 0.293511,1.964266 1.2192,2.799644 l 4.312356,4.018844 c 0.564444,0.51929 0.880533,1.2192 0.880533,2.09973 0,1.80623 -1.377244,2.93511 -3.025422,3.02543 -2.009422,0.11288 -3.476978,-1.35467 -3.2512,-3.70276 h -0.180622 c -0.361245,1.016 -0.428978,2.46098 -0.270934,3.16089 0.880534,0.92569 2.709334,1.24178 3.815645,1.24178 2.596444,0 4.244622,-1.73849 4.244622,-4.22205 0,-0.92569 -0.248355,-1.919108 -1.151467,-2.754486 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;font-family:'Cinzel Decorative';-inkscape-font-specification:'Cinzel Decorative';stroke-width:0.26458332"
+         id="path9" />
+      <path
+         d="m 70.757345,89.183646 v 0.225778 h 0.2032 c 0.587022,0 1.196622,0.519289 0.857956,1.4224 L 66.919123,102.66258 62.177789,90.831824 c -0.316088,-0.903111 0.270934,-1.4224 0.857956,-1.4224 h 0.2032 v -0.225778 h -5.102578 v 0.225778 h 0.180622 c 0.722489,0 1.557867,0.428978 2.009423,1.4224 l 6.344355,14.472356 h 0.2032 c 0,-0.47413 0.835378,-2.32551 0.835378,-2.32551 l 5.418667,-12.169424 c 0.474133,-0.993422 1.286933,-1.399822 1.986844,-1.399822 h 0.2032 v -0.225778 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;font-family:'Cinzel Decorative';-inkscape-font-specification:'Cinzel Decorative';stroke-width:0.26458332"
+         id="path11" />
+      <path
+         d="m 90.15342,98.417957 c -0.519289,4.605863 -3.228623,6.208893 -6.434667,6.231463 -3.793067,-0.11289 -6.366933,-3.07057 -6.366933,-7.608707 0,-4.492978 2.528711,-7.495823 6.479822,-7.495823 2.731911,0.02258 4.944533,1.4224 5.621867,4.041423 h 0.180622 l -0.451556,-3.183467 c -1.309511,-0.857956 -3.115733,-1.512711 -5.328355,-1.512711 -4.967111,0 -8.195734,3.296355 -8.195734,8.195733 0,4.989692 3.341511,8.218312 8.060267,8.240892 3.115733,0 5.147733,-1.4224 6.344356,-3.36409 l 0.270933,-3.544713 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;font-family:'Cinzel Decorative';-inkscape-font-specification:'Cinzel Decorative';stroke-width:0.26458332"
+         id="path13" />
+      <path
+         d="m 95.995775,90.831824 c 0.02258,-0.790222 0.677333,-1.4224 1.444978,-1.4224 h 0.293511 v -0.225778 h -4.921956 v 0.225778 h 0.270934 c 0.790222,0 1.4224,0.632178 1.444977,1.4224 v 12.530666 c 0,0.76764 -0.654755,1.4224 -1.444977,1.4224 h -0.270934 l -0.02258,0.22578 h 4.944534 v -0.22578 h -0.293511 c -0.790222,0 -1.4224,-0.65476 -1.444978,-1.4224 z m 2.212622,5.757333 5.328353,-6.141155 c 0.58702,-0.654756 1.46756,-1.038578 2.4384,-1.038578 h 0.0903 v -0.225778 h -4.76391 v 0.2032 h 0.2032 c 0.63218,0 0.92569,0.564444 0.54187,1.083733 l -5.305778,6.660445 5.418668,6.592706 c 1.03858,1.19663 2.77706,1.26436 3.40924,1.26436 h 0.94827 v -0.22578 c -0.90311,-0.0226 -1.51271,-0.29351 -2.12231,-0.90311 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;font-family:'Cinzel Decorative';-inkscape-font-specification:'Cinzel Decorative';stroke-width:0.26458332"
+         id="path15" />
+    </g>
   </g>
 </svg>
