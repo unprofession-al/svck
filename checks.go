@@ -24,7 +24,7 @@ func NewChecks(conf map[string]service, fakeHost, fakeProto, userAgent string, t
 						test:     testName,
 						resource: resourceName,
 						address:  address,
-						contains: test.Contains,
+						contains: resource.Contains,
 						status:   test.Status,
 						timeout:  timeout,
 					}
@@ -92,7 +92,7 @@ type check struct {
 	timeout int
 
 	// validation
-	contains string
+	contains []string
 	status   int
 
 	// result
@@ -142,8 +142,8 @@ func (c *check) MarshalJSON() ([]byte, error) {
 		Timeout int      `json:"timeout"`
 
 		// validation
-		Contains string `json:"contains"`
-		Status   int    `json:"status"`
+		Contains []string `json:"contains"`
+		Status   int      `json:"status"`
 
 		// result
 		Response *Response `json:"response"`
@@ -219,11 +219,14 @@ func (c *check) run(wg *sync.WaitGroup) {
 
 	c.duration = time.Since(start).Seconds()
 
-	body, err := ioutil.ReadAll(c.response.Body)
-	if err != nil {
-		c.reason = append(c.reason, fmt.Sprintf("Error reading body of %s: %s", c.request.URL, err.Error()))
-		c.success = false
-		return
+	body := []byte{}
+	if len(c.contains) > 0 {
+		body, err = ioutil.ReadAll(c.response.Body)
+		if err != nil {
+			c.reason = append(c.reason, fmt.Sprintf("Error reading body of %s: %s", c.request.URL, err.Error()))
+			c.success = false
+			return
+		}
 	}
 
 	if c.status == c.response.StatusCode {
@@ -233,8 +236,10 @@ func (c *check) run(wg *sync.WaitGroup) {
 		c.reason = append(c.reason, fmt.Sprintf("Expected %d, recieved %d", c.status, c.response.StatusCode))
 	}
 
-	if !strings.Contains(string(body), c.contains) {
-		c.success = false
-		c.reason = append(c.reason, fmt.Sprintf("content '%s' not in body", c.contains))
+	for _, contains := range c.contains {
+		if !strings.Contains(string(body), contains) {
+			c.success = false
+			c.reason = append(c.reason, fmt.Sprintf("content '%s' not in body", contains))
+		}
 	}
 }

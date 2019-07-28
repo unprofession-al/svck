@@ -30,14 +30,14 @@ type service struct {
 type test struct {
 	SSL            bool                `yaml:"ssl"`
 	Status         int                 `yaml:"status"`
-	Contains       string              `yaml:"contains"`
 	Resources      map[string]resource `yaml:"resources"`
 	RequestHeaders map[string]string   `yaml:"req_headers"`
 }
 
 type resource struct {
-	URL         string `json:"url"`
-	ContentType string `json:"content_type"`
+	URL         string   `json:"url"`
+	ContentType string   `json:"content_type"`
+	Contains    []string `yaml:"contains"`
 }
 
 func (c *config) ReadServiceFiles() error {
