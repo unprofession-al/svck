@@ -8,7 +8,7 @@
 
 Navigate to [Releases](https://github.com/unprofession-al/svck/releases), grab
 the package that matches your operating system and achitecture. Unpack the archive
-and put the binary file somewhere in your `$PATH`
+and put the binary file somewhere in your `$PATH`.
 
 ### From Source
 
@@ -65,4 +65,4 @@ Summary:
 
 ## Credits
 
-`svck` is based on an idea and a python/nose-based implmentation by @danduk82
+`svck` is based on an idea and a python/nose-based implmentation by [danduk82](https://github.com/danduk82).
