@@ -28,10 +28,11 @@ type service struct {
 }
 
 type test struct {
-	SSL            bool                `yaml:"ssl"`
-	Status         int                 `yaml:"status"`
-	Resources      map[string]resource `yaml:"resources"`
-	RequestHeaders map[string]string   `yaml:"req_headers"`
+	SSL             bool                `yaml:"ssl"`
+	Status          int                 `yaml:"status"`
+	Resources       map[string]resource `yaml:"resources"`
+	RequestHeaders  map[string]string   `yaml:"req_headers"`
+	ExpectedHeaders map[string][]string `yaml:"expected_headers"`
 }
 
 type resource struct {

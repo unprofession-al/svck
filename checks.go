@@ -20,13 +20,14 @@ func NewChecks(conf map[string]service, fakeHost, fakeProto, userAgent string, t
 			for testName, test := range service.Tests {
 				for resourceName, resource := range test.Resources {
 					c := check{
-						service:  serviceName,
-						test:     testName,
-						resource: resourceName,
-						address:  address,
-						contains: resource.Contains,
-						status:   test.Status,
-						timeout:  timeout,
+						service:         serviceName,
+						test:            testName,
+						resource:        resourceName,
+						address:         address,
+						contains:        resource.Contains,
+						status:          test.Status,
+						expectedHeaders: test.ExpectedHeaders,
+						timeout:         timeout,
 					}
 
 					useAddress := address
@@ -92,8 +93,9 @@ type check struct {
 	timeout int
 
 	// validation
-	contains []string
-	status   int
+	contains        []string
+	status          int
+	expectedHeaders map[string][]string
 
 	// result
 	response *http.Response
@@ -142,8 +144,9 @@ func (c *check) MarshalJSON() ([]byte, error) {
 		Timeout int      `json:"timeout"`
 
 		// validation
-		Contains []string `json:"contains"`
-		Status   int      `json:"status"`
+		Contains        []string            `json:"contains"`
+		Status          int                 `json:"status"`
+		ExpectedHeaders map[string][]string `json:"expected_headers"`
 
 		// result
 		Response *Response `json:"response"`
@@ -151,19 +154,20 @@ func (c *check) MarshalJSON() ([]byte, error) {
 		Success  bool      `json:"success"`
 		Reason   []string  `json:"reason"`
 	}{
-		Name:     c.name(),
-		Service:  c.service,
-		Test:     c.test,
-		Resource: c.resource,
-		Address:  c.address,
-		Request:  req,
-		Timeout:  c.timeout,
-		Contains: c.contains,
-		Status:   c.status,
-		Response: resp,
-		Duration: c.duration,
-		Success:  c.success,
-		Reason:   c.reason,
+		Name:            c.name(),
+		Service:         c.service,
+		Test:            c.test,
+		Resource:        c.resource,
+		Address:         c.address,
+		Request:         req,
+		Timeout:         c.timeout,
+		Contains:        c.contains,
+		ExpectedHeaders: c.expectedHeaders,
+		Status:          c.status,
+		Response:        resp,
+		Duration:        c.duration,
+		Success:         c.success,
+		Reason:          c.reason,
 	})
 }
 
@@ -243,7 +247,29 @@ func (c *check) run(wg *sync.WaitGroup) {
 	for _, contains := range c.contains {
 		if !strings.Contains(string(body), contains) {
 			c.success = false
-			c.reason = append(c.reason, fmt.Sprintf("content '%s' not in body", contains))
+			c.reason = append(c.reason, fmt.Sprintf("Content '%s' not in body", contains))
+		}
+	}
+
+	for name, values := range c.expectedHeaders {
+		recievedValues, ok := c.response.Header[name]
+		if !ok {
+			c.success = false
+			c.reason = append(c.reason, fmt.Sprintf("No header '%s' not recieved", name))
+			continue
+		}
+		for _, v := range values {
+			found := false
+			for _, rv := range recievedValues {
+				if strings.Contains(rv, v) {
+					found = true
+					continue
+				}
+			}
+			if !found {
+				c.success = false
+				c.reason = append(c.reason, fmt.Sprintf("No value '%s' found for header '%s'", v, name))
+			}
 		}
 	}
 }
