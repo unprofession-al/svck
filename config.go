@@ -36,8 +36,8 @@ type test struct {
 }
 
 type resource struct {
-	URL         string   `json:"url"`
-	ContentType string   `json:"content_type"`
+	URL         string   `yaml:"url"`
+	ContentType string   `yaml:"content_type"`
 	Contains    []string `yaml:"contains"`
 }
 
