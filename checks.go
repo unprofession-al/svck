@@ -193,6 +193,11 @@ func (c *check) requestHeaders(prefix string) string {
 
 func (c *check) responseHeaders(prefix string) string {
 	headers := ""
+
+	if c.response == nil {
+		return headers
+	}
+
 	for k, v := range c.response.Header {
 		for _, value := range v {
 			headers = fmt.Sprintf("%s%s\"%s: %s\" ", headers, prefix, k, value)
