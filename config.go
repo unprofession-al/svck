@@ -56,13 +56,13 @@ func (c *config) ReadServiceFiles() error {
 
 		yamlFile, err := ioutil.ReadFile(file)
 		if err != nil {
-			errOut := fmt.Errorf("Error while reading config file %s: %s\n", file, err)
+			errOut := fmt.Errorf("error while reading config file %s: %s", file, err)
 			return errOut
 		}
 
 		err = yaml.Unmarshal(yamlFile, s)
 		if err != nil {
-			errOut := fmt.Errorf("Error while unmarshalling config file %s: %s\n", file, err)
+			errOut := fmt.Errorf("error while unmarshalling config file %s: %s", file, err)
 			return errOut
 		}
 	}

@@ -116,7 +116,7 @@ func (a App) curlCmd(cmd *cobra.Command, args []string) {
 		if !a.cfg.NoBashComments {
 			fmt.Printf("\n# %s\n", check.name())
 		}
-		fmt.Sprintf("%s\n", check.asCurl())
+		fmt.Printf("%s\n", check.asCurl())
 	}
 }
 
