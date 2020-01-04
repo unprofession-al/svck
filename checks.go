@@ -246,7 +246,7 @@ func (c *check) run(wg *sync.WaitGroup) {
 		c.success = true
 	} else {
 		c.success = false
-		c.reason = append(c.reason, fmt.Sprintf("Expected %d, recieved %d", c.status, c.response.StatusCode))
+		c.reason = append(c.reason, fmt.Sprintf("Expected %d, received %d", c.status, c.response.StatusCode))
 	}
 
 	for _, contains := range c.contains {
@@ -260,7 +260,7 @@ func (c *check) run(wg *sync.WaitGroup) {
 		recievedValues, ok := c.response.Header[name]
 		if !ok {
 			c.success = false
-			c.reason = append(c.reason, fmt.Sprintf("No header '%s' not recieved", name))
+			c.reason = append(c.reason, fmt.Sprintf("No header '%s' not received", name))
 			continue
 		}
 		for _, v := range values {
