@@ -61,7 +61,7 @@ func NewApp() *App {
 	return a
 }
 
-func (a App) runCmd(cmd *cobra.Command, args []string) {
+func (a *App) runCmd(cmd *cobra.Command, args []string) {
 	a.cfg.ServiceFiles = args
 	err := a.cfg.ReadServiceFiles()
 	if err != nil {
@@ -97,7 +97,7 @@ func (a App) runCmd(cmd *cobra.Command, args []string) {
 	}
 }
 
-func (a App) curlCmd(cmd *cobra.Command, args []string) {
+func (a *App) curlCmd(cmd *cobra.Command, args []string) {
 	a.cfg.ServiceFiles = args
 	err := a.cfg.ReadServiceFiles()
 	if err != nil {
@@ -120,6 +120,6 @@ func (a App) curlCmd(cmd *cobra.Command, args []string) {
 	}
 }
 
-func (a App) versionCmd(cmd *cobra.Command, args []string) {
+func (a *App) versionCmd(cmd *cobra.Command, args []string) {
 	fmt.Println(versionInfo())
 }
