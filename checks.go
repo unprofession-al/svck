@@ -260,7 +260,7 @@ func (c *check) run(wg *sync.WaitGroup) {
 		recievedValues, ok := c.response.Header[name]
 		if !ok {
 			c.success = false
-			c.reason = append(c.reason, fmt.Sprintf("No header '%s' not received", name))
+			c.reason = append(c.reason, fmt.Sprintf("No header '%s' received", name))
 			continue
 		}
 		for _, v := range values {
