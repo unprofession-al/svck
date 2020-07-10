@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"github.com/spf13/cobra"
+	"github.com/unprofession-al/workerpool"
 )
 
 type App struct {
@@ -72,7 +73,11 @@ func (a *App) runCmd(cmd *cobra.Command, args []string) {
 	if err != nil {
 		panic(err)
 	}
-	p := NewPool(checks, a.cfg.Workers)
+
+	p := workerpool.New(a.cfg.Workers)
+	for _, check := range checks {
+		p.Add(check.run)
+	}
 	p.Run(!a.cfg.NoProgress)
 
 	success := 0

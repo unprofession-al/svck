@@ -6,7 +6,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strings"
-	"sync"
 	"time"
 )
 
@@ -207,8 +206,7 @@ func (c *check) responseHeaders(prefix string) string {
 	return headers
 }
 
-func (c *check) run(wg *sync.WaitGroup) {
-	defer wg.Done()
+func (c *check) run() {
 	var err error
 	c.reason = []string{}
 	duration := 0.0
