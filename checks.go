@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"regexp"
 	"strings"
 	"time"
 )
@@ -248,9 +249,15 @@ func (c *check) run() {
 	}
 
 	for _, contains := range c.contains {
-		if !strings.Contains(string(body), contains) {
+		found, err := regexp.MatchString(contains, string(body))
+		if err != nil {
+			c.reason = append(c.reason, fmt.Sprintf("Error parsing regexp %s: %s", contains, err.Error()))
 			c.success = false
-			c.reason = append(c.reason, fmt.Sprintf("Content '%s' not in body", contains))
+			return
+		}
+		if (found != true) {
+			c.success = false
+			c.reason = append(c.reason, fmt.Sprintf("Content regexp '%s' not in body", contains))
 		}
 	}
 
