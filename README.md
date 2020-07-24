@@ -43,7 +43,7 @@ my_website:
           content_type: "text/html"
           contains:
             - "<title(.*?)</title>"
-            - 'class="(chiffre|number)"
+            - class="(letter|number)"
         very_important:
           url:          "bla.html"
           content_type: "text/html"
