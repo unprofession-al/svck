@@ -255,7 +255,7 @@ func (c *check) run() {
 			c.success = false
 			return
 		}
-		if (found != true) {
+		if !found {
 			c.success = false
 			c.reason = append(c.reason, fmt.Sprintf("Content regexp '%s' not in body", contains))
 		}
