@@ -41,6 +41,9 @@ my_website:
         index:
           url:          "/"
           content_type: "text/html"
+          contains:
+            - "<title(.*?)</title>"
+            - class="(letter|number)"
         very_important:
           url:          "bla.html"
           content_type: "text/html"
