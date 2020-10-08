@@ -271,8 +271,13 @@ func (c *check) run() {
 		for _, v := range values {
 			found := false
 			for _, rv := range recievedValues {
-				if strings.Contains(rv, v) {
-					found = true
+				found, err = regexp.MatchString(v, rv)
+				if err != nil {
+					c.reason = append(c.reason, fmt.Sprintf("Error parsing regexp %s: %s", rv, err.Error()))
+					c.success = false
+					return
+				}
+				if found {
 					continue
 				}
 			}
